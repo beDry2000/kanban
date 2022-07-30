@@ -1,0 +1,36 @@
+.calendar-box {
+    background: none repeat scroll 0 0 #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+    font-weight: bold;
+    height: 3.5rem;
+    text-align: center;
+    width: 3.5rem;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  
+  .calendar-box span {
+    display: block;
+  }
+  
+  .calendar-box span.top {
+    user-select: none;
+    background: none repeat scroll 0 0 #3c53c7;
+    border-radius: 10px 10px 0 0;
+  
+    color: #FFFFFF;
+    font-size: 1em;
+    height: 1.5em;
+    line-height: 1.5em;
+    text-transform: uppercase;
+  }
+  
+  
+  
+  .calendar-box span.bottom {
+    user-select: none;
+    color: #3c53c7;
+    font-size: 1.7em;
+    line-height: 1em;
+  }
+  

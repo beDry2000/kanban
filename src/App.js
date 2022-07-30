@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import Home from './component/Home';
+import getData from './component/context/reducer/data';
+import { useData } from './component/hooks';
+import { fetchJob } from './component/context/reducer/actions';
+import { useSideContext } from './component/hooks';
+import Login from './component/Login';
+
+import './App.css'
 
 function App() {
+  const [state, dispatch] = useData();
+  const {openLogin} = useSideContext();
+
+  useEffect(() => {
+    if (window.localStorage.getItem('todos') === null) {
+      const data = getData();
+      window.localStorage.setItem('todos', JSON.stringify(data));
+    } 
+    console.log(JSON.parse(window.localStorage.getItem('todos')));
+  },[])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {
+        openLogin ? <Login /> : <Home />
+      }
+    </>
   );
 }
 
