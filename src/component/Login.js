@@ -31,6 +31,7 @@ const Login = () => {
         dispatch(setCurUser(nameInt))
         handleLogIn();
         handleCloseLogin();
+        window.sessionStorage.setItem('userLogin', nameInt);
       } else {
         setError(true);
       }

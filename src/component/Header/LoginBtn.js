@@ -38,6 +38,9 @@ const LoginBtn = () => {
       <Button
         variant="contained"
         onClick={handleClick}
+        sx={{ 
+          mr: 2,
+      }}
       >
         {
           isLoggedin ? 'Log out' : 'Log in'

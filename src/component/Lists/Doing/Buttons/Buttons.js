@@ -8,7 +8,8 @@ const Buttons = ({id}) => {
     <div>
       <EditBtn id={id}/>
       <DelBtn id={id}/>
-      <ShareBtn />
+      <DelBtn id={id}/>
+      {/* <ShareBtn /> */}
     </div>
   )
 }

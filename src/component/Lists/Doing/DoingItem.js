@@ -5,8 +5,9 @@ import { editJob, editId } from '../../context/reducer/actions';
 
 import './DoingItem.css';
 import { useData } from '../../hooks';
+import { Draggable } from 'react-beautiful-dnd';
 
-const DoingItem = ({ todo, date, id, isCompleted }) => {
+const DoingItem = ({ todo, date, id, isComplete, index }) => {
 
 
     const editInputRef = useRef();
@@ -23,18 +24,20 @@ const DoingItem = ({ todo, date, id, isCompleted }) => {
     return (
         // assign provided.inerRef
         <>
+
             <div>
                 {
                     editedId !== id ?
                         (
                             <>
                                 <input className="inp-cbx" id={id} type="checkbox" style={{ display: "none" }}
-                                    checked={isCompleted}
+                                    checked={isComplete}
                                     onChange={() => {
                                         dispatch(checkJob(id))
                                         console.log('Dang chay Edit')
                                     }} />
-                                <label className="cbx" htmlFor={id}>
+                                <label className="cbx" htmlFor={id}
+                                >
                                     <span>
                                         <svg width="12px" height="9px" >
                                             <polyline points="1 5 4 8 11 1"></polyline>
@@ -52,6 +55,8 @@ const DoingItem = ({ todo, date, id, isCompleted }) => {
 
                 }
             </div>
+
+
 
             <Buttons id={id} />
         </>

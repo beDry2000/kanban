@@ -107,7 +107,14 @@ const reducer = (state, action) => {
                 }
                 return todo;
             });
-            console.log(todos)
+
+            const unRemoveLocal = getLocalTodos();
+            const unRemoveUser = getCurrentUser(unRemoveLocal);
+
+            unRemoveUser.todos = unRemove;
+            window.localStorage.setItem('todos', JSON.stringify(unRemoveLocal));
+
+
             return {
                 ...state,
                 todos: unRemove,
@@ -119,7 +126,7 @@ const reducer = (state, action) => {
                 curUser: user
             }
         case REORDER_DOING:
-            const reorderDoing = todos.filter(({isCompleted, isRemoved}) => isCompleted || isRemoved);
+            const reorderDoing = todos.filter(({ isCompleted, isRemoved }) => isCompleted || isRemoved);
             reorderDoing.push(...action.newDoing);
 
             const reDoingLocal = getLocalTodos();
@@ -145,6 +152,6 @@ export default reducer;
 
 
 // {iscompleted: false}
-// {iscompleted: true}, 
-// {isCompleted: false}, 
+// {iscompleted: true},
+// {isCompleted: false},
 // {isCompleted: true}

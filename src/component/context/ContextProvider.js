@@ -1,7 +1,6 @@
 import React, { useReducer } from 'react';
 import {createContext} from 'react';
 import reducer from './reducer/reducer';
-import getData from './reducer/data';
 
 
 export const DataContext = createContext();

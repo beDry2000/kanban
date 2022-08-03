@@ -74,7 +74,22 @@ const dataBase = [{
       ]
 
     }
-  ]
+  ],
+  columns: {
+    'column-1' :{
+      id:'column-1',
+      title: 'Doing',
+    },
+    'column-2' :{
+      id:'column-1',
+      title: 'Done',
+    },
+    'column-3' :{
+      id:'column-1',
+      title: 'Removed',
+    },
+    columnOrder: ['column-1', 'column-2', 'column-3'],
+  }
 }, {
   userName: 'lien',
   password: 'lien1234',

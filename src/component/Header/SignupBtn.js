@@ -48,10 +48,6 @@ const SignupBtn = () => {
                 }
             }
             
-            // test if password true condition
-            // push to localStorage see if data of app autochange
-            // console.log(nameInt.current.value);
-            // console.log(passInt.current.value);
         } else {
             setError('Invalid input');
         }
@@ -71,7 +67,14 @@ const SignupBtn = () => {
             {
                 isLoggedin ? true : (
                     <>
-                        <Button variant="contained" onClick={handleClickOpen}>Signup</Button>
+                        <Button 
+                        variant="contained" 
+                        onClick={handleClickOpen}
+                        sx={{ 
+                            mr: 2,
+                        }}
+                        
+                        >Signup</Button>
                         <Dialog open={open} onClose={handleClose}>
                             <DialogTitle>Sign up</DialogTitle>
                             <DialogContent>

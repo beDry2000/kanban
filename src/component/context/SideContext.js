@@ -12,7 +12,10 @@ const SideContextProvider = ({children}) => {
     const handleCloseLogin = () => setOpenLogin(false);
 
     const handleLogIn = () => setIsLoggedin(true);
-    const handleLogout = () => setIsLoggedin(false);
+    const handleLogout = () => {
+      setIsLoggedin(false);
+      window.sessionStorage.removeItem('userLogin');
+    };
     // Set Logout sau 
 
     const value = {
