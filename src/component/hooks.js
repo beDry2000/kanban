@@ -5,7 +5,14 @@ import { SideContext } from "./context/SideContext";
 // Func to get Data
 export const useData = () => useContext(DataContext);
 
+// Func get Local
+export const getLocalTodos = () => JSON.parse(window.localStorage.getItem('todos'));
 
+// get user object from localStorage
+export  const getUserObject = (localArr, curUser) => localArr.find(({ userName }) => userName === curUser);
+
+// set new Obj to Local Storage
+export const setLocal = (newItemArr) => window.localStorage.setItem('todos', JSON.stringify(newItemArr));
 
 // Func to get SideContext
 export const useSideContext = () => useContext(SideContext);

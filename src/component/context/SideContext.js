@@ -7,9 +7,24 @@ const SideContextProvider = ({children}) => {
 
     const [openLogin, setOpenLogin] = useState(false);
     const [isLoggedin, setIsLoggedin] = useState(false);
+    const [alert, setAlert] = useState(false);
+    const [sharedUser, setSharedUser] = useState(false);
 
     const handleOpenLogin = () => setOpenLogin(true);
     const handleCloseLogin = () => setOpenLogin(false);
+
+    const handleOpenAlert = () => setAlert(true);
+    const handleCloseAlert = (e, reason) => {
+      if (reason === 'clickaway') {
+        return;
+      }
+      setAlert(false);
+      setSharedUser('');
+      console.log(('Tu dong dong cung se xoa thang Shared User'));
+    }
+    const handleShareUser = (user) => {
+      setSharedUser(user);
+    }
 
     const handleLogIn = () => setIsLoggedin(true);
     const handleLogout = () => {
@@ -24,7 +39,12 @@ const SideContextProvider = ({children}) => {
         handleOpenLogin,
         handleCloseLogin,
         handleLogIn,
-        handleLogout
+        handleLogout,
+        alert,
+        handleOpenAlert,
+        handleCloseAlert,
+        sharedUser,
+        handleShareUser,
     }
   return (
     <SideContext.Provider value={value}>

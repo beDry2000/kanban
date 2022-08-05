@@ -27,8 +27,8 @@ const Doing = ({ id }) => {
             }
           </Droppable>
         </div>
-        <AddDoing />
       </div>
+        <AddDoing />
     </>
 
   )

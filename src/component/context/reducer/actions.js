@@ -1,4 +1,4 @@
-import { FETCH_JOB, SET_JOB, ADD_JOB, DEL_JOB, EDIT_JOB, FIL_JOB, CHECK_JOB, EDIT_ID, REMOVE_JOB, SET_USER, REORDER_DOING } from './constants';
+import { FETCH_JOB, SET_JOB, ADD_JOB, DEL_JOB, EDIT_JOB, FIL_JOB, CHECK_JOB, EDIT_ID, REMOVE_JOB, SET_USER, REORDER_DOING, ASSIGN_JOB } from './constants';
 
 const reOrderDoing = payload => ({
     type: REORDER_DOING,
@@ -48,4 +48,12 @@ const setCurUser = payload => ({
     type: SET_USER,
     payload,
 })
-export { fetchJob, setJob, addJob, delJob, editJob, filJob, checkJob, editId, removeJob, setCurUser, reOrderDoing };
+
+const assignJob = ({ taskObj, curUser, receiver }) => ({
+    type: ASSIGN_JOB,
+    sharedTask: taskObj,
+    curUser,
+    receiver
+})
+
+export { fetchJob, setJob, addJob, delJob, editJob, filJob, checkJob, editId, removeJob, setCurUser, reOrderDoing, assignJob };

@@ -1,7 +1,6 @@
 import { reOrderDoing } from '../../context/reducer/actions';
 import DoingItem from './DoingItem';
 
-import './DoingItem.css';
 
 
 import { useData } from '../../hooks';
@@ -13,11 +12,7 @@ const DoingList = ({ provided, columnId, innerRef }) => {
 
 
   const [state, dispatch] = useData();
-  const { todos } = state;
-
-
-  const doingArr = todos.filter(({ isCompleted, isRemoved }) => !isCompleted && !isRemoved)
-
+  const { todos, curUser } = state;
   // const doingArr = ;
 
 
@@ -29,18 +24,25 @@ const DoingList = ({ provided, columnId, innerRef }) => {
         {...provided.droppableProps}
       >
         {
-          doingArr
-            .map(({ todo, date, id, isCompleted }, index) => (
+          todos.filter(({ isCompleted, isRemoved, assignedFrom }) => {
+            if ( assignedFrom === curUser) {
+              return false;
+            }
+            return !isCompleted && !isRemoved;
+          } )
+            .map(({ todo, date, id, isCompleted, assignedFrom }, index) => (
               <Draggable draggableId={id.toString()} index={index} key={id.toString()}>
                 {(provided) => (
                   <div
-                    className='border border-sky-500'
+                    className='doing-task boxshadow '
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
+                
                   >
                     <DoingItem todo={todo} id={id} isComplete={isCompleted}
                       index={index}
+                      from={!!assignedFrom ? assignedFrom : ''}
                     />
                   </div >
                 )}

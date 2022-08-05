@@ -5,11 +5,11 @@ import ShareBtn from './ShareBtn';
 
 const Buttons = ({id}) => {
   return (
-    <div>
+    <div className='buttons'>
       <EditBtn id={id}/>
       <DelBtn id={id}/>
-      <DelBtn id={id}/>
-      {/* <ShareBtn /> */}
+      {/* <DelBtn id={id}/> */}
+      <ShareBtn shareId={id}/>
     </div>
   )
 }

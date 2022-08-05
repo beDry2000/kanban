@@ -1,12 +1,17 @@
 import { useRef, useState } from "react";
 
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+
 import { useData, useSideContext } from "./hooks"
 import { fetchJob, setCurUser } from "./context/reducer/actions";
 
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 
-import { DragDropContext } from 'react-beautiful-dnd';
+// import TextField from '@mui/material/TextField';
+
+// import { DragDropContext } from 'react-beautiful-dnd';
 
 const Login = () => {
   const userNameInt = useRef();
@@ -27,7 +32,7 @@ const Login = () => {
 
       if (!!userTodos) {
         dispatch(fetchJob(userTodos.todos));
-        
+
         dispatch(setCurUser(nameInt))
         handleLogIn();
         handleCloseLogin();
@@ -42,44 +47,50 @@ const Login = () => {
 
   return (
     <div className='my-20 mx-20'>
-      <div>
-        <label htmlFor="username"> Username: </label>
-        <input
-          id="username"
-          ref={userNameInt}
-          type='text'
-          onFocus={() => error ? setError(false) : ''}
-        />
+      <div className="login-container boxshadow ">
+        <div class="col-3 input-effect">
+          <input
+            class="effect-16"
+            type="text"
+            placeholder=" "
+            id="username"
+            ref={userNameInt}
+
+            onFocus={() => error ? setError(false) : ''}
+          />
+          <label>User Name</label>
+          <span class="focus-border"></span>
+        </div>
+        <div class="col-3 input-effect">
+          <input class="effect-16"
+            type="password"
+            placeholder=" "
+            id="password"
+            ref={passInt}
+
+            onFocus={() => error ? setError(false) : ''} />
+          <label>Pass word</label>
+          <span class="focus-border"></span>
+        </div>
+        <hr style={{width: '80%', border: '1px solid lightgray', margin: "20px auto"}} />
+        {
+          error && (<p><strong>Khong dung ten dang nhap/mat khau</strong></p>)
+        }
+       
+        <div className='doing-item' style={{justifyContent: 'center', margin: '20px 0'}}>
+          <Stack spacing={2} direction="row">
+
+            <Button
+              variant="outlined"
+              onClick={handleClick}
+            >Log In</Button>
+            <Button
+              variant="outlined"
+              onClick={handleCloseLogin}
+            >Back to home</Button>
+          </Stack>
+        </div>
       </div>
-      <div>
-        <label htmlFor="password"> Password: </label>
-        <input
-          id="password"
-          ref={passInt}
-          type="password"
-          onFocus={() => error ? setError(false) : ''}
-        />
-      </div>
-      {
-        error && (<p><strong>Khong dung ten dang nhap/mat khau</strong></p>)
-      }
-      <button onClick={handleClick}>Login</button>
-      <button onClick={handleCloseLogin}>Dont want to Log in</button>
-      {/* 
-      Truyen onFocus qua InputProps duoc
-      
-      <TextField
-          error={error}
-          id="outlined-error"
-          label="Error"
-          defaultValue="Hello World"
-          InputProps={
-            {
-              onFocus: (() => error? setError(false) : '')
-            }
-          }
-         
-        /> */}
     </div>
   )
 }

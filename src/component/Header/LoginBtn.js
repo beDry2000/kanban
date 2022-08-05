@@ -16,6 +16,7 @@ const style = {
   borderRadius: '10px',
   boxShadow: 50,
   p: 4,
+  pb: 2
 };
 
 const LoginBtn = () => {
@@ -38,14 +39,15 @@ const LoginBtn = () => {
       <Button
         variant="contained"
         onClick={handleClick}
-        sx={{ 
+        sx={{
           mr: 2,
-      }}
+        }}
       >
         {
           isLoggedin ? 'Log out' : 'Log in'
         }
       </Button>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -53,22 +55,28 @@ const LoginBtn = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="button" component="h2">
+          <Typography id="modal-modal-title" variant="button" component="h2" sx={{textAlign:'center', fontSize:'20px', fontWeight:'600'}}>
             Do you want to log out?
           </Typography>
-          <Button
-            sx={{ mb: -2, mt: 2, ml: '10rem', mr: '2rem', width: 1 / 4 }}
-            variant="outlined"
-            onClick={() => {
-              handleClose();
-              handleLogout();
-            }}
-          >
-            Yes
-          </Button>
-          <Button
-            sx={{ mb: -2, mt: 2, width: 1 / 4 }}
-            variant="contained" onClick={handleClose}>No</Button>
+          <div className='button-logout-div'>
+            <Button
+              // sx={{ mb: -2, mt: 2, ml: '10rem', mr: '2rem', width: 1 / 4 }}
+              sx={{mr: '20px', ml: '20px', mt: '20px', mb: '5px'}}
+              className='button-logout'
+              variant="outlined"
+              onClick={() => {
+                handleClose();
+                handleLogout();
+              }}
+            >
+              Yes
+            </Button>
+            <Button
+             className='button-logout'
+             sx={{mr: '20px', ml: '20px', mt: '20px', mb: '5px'}}
+              // sx={{ mb: -2, mt: 2, width: 1 / 4 }}
+              variant="contained" onClick={handleClose}>No</Button>
+          </div>
         </Box>
       </Modal>
     </>

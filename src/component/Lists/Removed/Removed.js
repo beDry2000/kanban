@@ -17,7 +17,7 @@ const Removed = ({ id }) => {
       <h2>Removed</h2>
       <hr />
       </div>
-      <div className='task-content' >
+      <div className='task-content'>
       <Droppable droppableId={id}>
         {
           (provided, snapshot) => (

@@ -18,20 +18,27 @@ const Done = ({ id }) => {
         <Droppable droppableId={id}>
           {
             (provided, snapshot) => (
-              <div
-                style={{ backgroundColor: snapshot.isDraggingOver ? 'lightblue' : '' }}
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {provided.placeholder}
-                {
-                  todos
-                    .filter(({ isCompleted }) => isCompleted)
-                    .map(({ todo }, index) => (
-                      <DoneItem key={index} todo={todo} />
-                    ))
-                }
-              </div>
+              !!id && (
+                <div
+                  className='boxshadow'
+                  style={{
+                    backgroundColor: snapshot.isDraggingOver ? 'lightblue' : '',
+                    // paddingTop: '10px'
+                  }}
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+                >
+                  {provided.placeholder}
+                  {
+                    todos
+                      .filter(({ isCompleted }) => isCompleted)
+                      .map(({ todo }, index) => (
+                        <DoneItem key={index} todo={todo} />
+                      ))
+                  }
+                </div>
+              )
+
             )
           }
         </Droppable>

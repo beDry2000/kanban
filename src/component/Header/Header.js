@@ -3,7 +3,6 @@ import Calendar from './Calendar';
 import LoginBtn from './LoginBtn'
 import './Calendar.css';
 import SignupBtn from './SignupBtn';
-import './Header.css'
 
 
 const Header = () => {

@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect } from 'react';
 import Home from './component/Home';
 import getData from './component/context/reducer/data';
-import { useData } from './component/hooks';
+import { getLocalTodos, useData } from './component/hooks';
 import { fetchJob, setCurUser } from './component/context/reducer/actions';
 import { useSideContext } from './component/hooks';
 import Login from './component/Login';
@@ -17,7 +17,6 @@ function App() {
       const data = getData();
       window.localStorage.setItem('todos', JSON.stringify(data));
     } 
-    console.log(JSON.parse(window.localStorage.getItem('todos')));
     if (window.sessionStorage.getItem('userLogin') !== null) {
       const userLogin = window.sessionStorage.getItem('userLogin');
       const localData = JSON.parse(window.localStorage.getItem('todos'));

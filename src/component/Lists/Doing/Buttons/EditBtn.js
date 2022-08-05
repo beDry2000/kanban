@@ -15,6 +15,7 @@ const EditBtn = ({id}) => {
                 <IconButton
                     aria-label="edit"
                     size="lg"
+                    style={{color: 'black'}}
                     onClick={() => dispatch(editId(id))}
                 >
                     <EditIcon />

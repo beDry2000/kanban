@@ -38,7 +38,7 @@ const AddToDo = () => {
     const isMediumScreen = useMediaQuery('(min-width:1024px)');
 
     return (
-        <div className='mt-4 flex items-end gap-4'>
+        <div className='mt-4 flex items-end gap-4 cursor-pointer'>
             <svg
                 className='cursor-pointer'
                 width="26" height="26" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +50,7 @@ const AddToDo = () => {
             </svg>
 
             {hideInput
-                ? <div onClick={handleInput}>Create New Item</div>
+                ? <div onClick={handleInput} >Create New Item</div>
                 : (
                     <>
                         <Box

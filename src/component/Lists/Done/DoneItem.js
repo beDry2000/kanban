@@ -1,9 +1,8 @@
 import React from 'react';
-import '../Doing/DoingItem.css'
 
 const DoneItem = ({todo}) => {
     return (
-        <div>
+        <div className='done-item'>
             <input className="inp-cbx" id={todo} type="checkbox" style={{ display: "none" }} checked readOnly/>
             <label className="cbx" htmlFor={todo}><span>
                 <svg width="12px" height="9px" >

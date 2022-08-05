@@ -1,6 +1,6 @@
-import { ADD_JOB, CHECK_JOB, DEL_JOB, EDIT_JOB, SET_JOB, EDIT_ID, REMOVE_JOB, FETCH_JOB, SET_USER, REORDER_DOING } from "./constants";
-
-
+import { ADD_JOB, CHECK_JOB, DEL_JOB, EDIT_JOB, SET_JOB, EDIT_ID, REMOVE_JOB, FETCH_JOB, SET_USER, REORDER_DOING, ASSIGN_JOB } from "./constants";
+import { getUserObject } from "../../hooks";
+import { SetDate } from "../../hooks";
 
 
 
@@ -40,21 +40,40 @@ const reducer = (state, action) => {
             todos.push(newJob);
             const addLocal = getLocalTodos();
             const addUser = getCurrentUser(addLocal);
-
             addUser.todos.push(newJob);
+
             window.localStorage.setItem('todos', JSON.stringify(addLocal));
             return state;
         case CHECK_JOB:
+            const checkLocal = getLocalTodos();
+            const checkUser = getCurrentUser(checkLocal);
             const checkedArr = todos.map(todo => {
                 if (todo.id === action.payload) {
+
                     todo.isCompleted = true;
+                    const isAssigned = todo.assignedTo || false;
+
+                    if (isAssigned) {
+                        const assignUser = getUserObject(checkLocal, todo.assignedFrom);
+                        const updateArr = assignUser.todos.map(assTask => {
+                            if (assTask.id === action.payload) {
+                                const date = SetDate();
+                                return {
+                                    ...assTask,
+                                    isCompleted: true,
+                                    date
+                                }
+                            }
+                            return assTask;
+                        })
+                        assignUser.todos = updateArr
+                    }
                 }
                 return todo;
             })
-            const checkLocal = getLocalTodos();
-            const checkUser = getCurrentUser(checkLocal);
 
             checkUser.todos = checkedArr;
+            console.log(checkLocal);
             window.localStorage.setItem('todos', JSON.stringify(checkLocal));
             return {
                 ...state,
@@ -83,7 +102,6 @@ const reducer = (state, action) => {
                 editedId: action.payload
             }
         case EDIT_JOB:
-            console.log('Edit input nhan duoc dung useRef: ', action.input);
             const editTodos = todos.map(todo => {
                 if (todo.id === action.id) {
                     todo.todo = action.input;
@@ -102,7 +120,6 @@ const reducer = (state, action) => {
         case REMOVE_JOB:
             const unRemove = todos.map((todo) => {
                 if (todo.id === action.payload) {
-                    console.log('Remove item id', todo.id);
                     todo.isRemoved = false;
                 }
                 return todo;
@@ -139,7 +156,38 @@ const reducer = (state, action) => {
                 ...state,
                 todos: reorderDoing
             }
+        case ASSIGN_JOB:
+            const { sharedTask, curUser, receiver } = action;
+            const assignedTask = {
+                ...sharedTask,
+                assignedFrom: curUser,
+                assignedTo: receiver
+            }
 
+            console.log('Assigned Task', assignedTask);
+
+            const assignLocal = getLocalTodos();
+            const receiverTodo = getUserObject(assignLocal, receiver);
+            receiverTodo.todos.push(assignedTask);
+
+            console.log('ReceiverTodo', receiverTodo);
+
+            const curTodo = getUserObject(assignLocal, curUser);
+            const assignTodo = curTodo.todos.map(todo => {
+                if (todo.id === sharedTask.id) {
+                    return assignedTask
+                }
+                return todo
+            })
+            console.log(curTodo);
+            console.log('New ', assignTodo);
+            curTodo.todos = assignTodo;
+            console.log('New local', assignLocal);
+            window.localStorage.setItem('todos', JSON.stringify(assignLocal));
+            return {
+                ...state,
+                todos: assignTodo
+            }
         default:
             throw new Error('Invalid action');
     }
@@ -150,8 +198,3 @@ const reducer = (state, action) => {
 
 export default reducer;
 
-
-// {iscompleted: false}
-// {iscompleted: true},
-// {isCompleted: false},
-// {isCompleted: true}

@@ -1,10 +1,13 @@
+import React from 'react';
 import Doing from './Doing/Doing';
 import Done from './Done/Done';
 import Removed from './Removed/Removed';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import './Lists.css';
 import { useData } from '../hooks';
 import { checkJob, delJob, reOrderDoing } from '../context/reducer/actions';
+import AssignTable from './AssignTable';
+
+
 
 const Lists = () => {
   const [state, dispatch] = useData();
@@ -20,7 +23,7 @@ const Lists = () => {
     if (start === end && source.index === destination.index) { return; };
     // reOrder inside a list 
     if (start !== end) {
-      dispatch(end === 'column-2'? checkJob(+draggableId) : delJob(+draggableId));
+      dispatch(end === 'column-2' ? checkJob(+draggableId) : delJob(+draggableId));
       return;
     }
     const userData = JSON.parse(window.localStorage.getItem('todos'));
@@ -36,7 +39,7 @@ const Lists = () => {
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="allLists flex gap-5 justify-evenly mt-5">
+        <div className="supper-container">
           <div className="list">
             <Doing id='column-1' />
           </div>
@@ -48,6 +51,9 @@ const Lists = () => {
           </div>
         </div>
       </DragDropContext>
+      <div className='btn-fix'>
+      <AssignTable />
+      </div>
     </>
   )
 }

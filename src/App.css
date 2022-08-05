@@ -1,14 +1,29 @@
+/* HEADER */
+.header {
+  height: 5rem;
+  padding: 2rem 0;
+  background-color: rgb(165, 215, 240);
+  border-bottom: 1px solid black;
+}
 
+/* End Header */
 /* CSS Each list */
+
 .list {
+  height: 80vh;
+  /* max-height: 80vh; */
+  box-shadow: rgb(6 24 44 / 40%) 0px 0px 0px 2px, rgb(6 24 44 / 65%) 0px 4px 6px -1px, rgb(255 255 255 / 8%) 0px 1px 0px inset;
   width: 30%;
   border: 1px solid #000;
   border-radius: 20px;
   margin: 2px;
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.list  h2 {
+.list h2 {
   text-align: center;
   font-size: 1.3rem;
 }
@@ -16,23 +31,436 @@
 hr {
   border: 1px solid black;
   margin-top: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
 }
 
 .task-list {
   min-height: auto;
   max-height: 70vh;
-  height: 70vh;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
 }
+
 .top-list {
-  height: 10%;
+  height: 8%;
 }
+
 .task-content-doing {
-  height: 75%;
-  overflow: scroll;
+  height: 85%;
+  overflow-y: scroll;
+  overflow-x: visible;
 }
+
 .task-content {
   height: 90%;
   overflow: scroll;
 }
 
+.doing-task {
+  position: relative;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Check box */
+.cbx {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+
+.cbx span {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translate3d(0, 0, 0);
+}
+
+/* .cbx span:last-child {
+  margin-top: -2px;
+} */
+
+.cbx span:first-child {
+  position: relative;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transform: scale(1);
+  vertical-align: middle;
+  border: 1px solid #B9B8C3;
+  transition: all .2s ease;
+}
+
+.cbx span:first-child svg {
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 6px;
+  fill: none;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: all .3s ease;
+  transition-delay: .1s;
+  transform: translate3d(0, 0, 0);
+}
+
+.cbx span:first-child:before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background: #3c53c7;
+  display: block;
+  transform: scale(0);
+  opacity: 1;
+  border-radius: 50%;
+  transition-delay: .2s;
+}
+
+.cbx span:last-child {
+  margin-left: 8px;
+}
+
+
+
+.cbx:hover span:first-child {
+  border-color: #3c53c7;
+}
+
+.inp-cbx:checked+.cbx span:first-child {
+  border-color: #3c53c7;
+  background: #3c53c7;
+  animation: check .6s ease;
+}
+
+.inp-cbx:checked+.cbx span:first-child svg {
+  stroke-dashoffset: 0;
+}
+
+.inp-cbx:checked+.cbx span:first-child:before {
+  transform: scale(2.2);
+  opacity: 0;
+  transition: all .6s ease;
+}
+
+/* End checkbox */
+::-webkit-scrollbar {
+  display: none;
+}
+
+.doing-item,
+.removed-item {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  margin: 10px 0;
+  align-items: center;
+}
+
+.doing-item-left {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.boxshadow {
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.height50 {
+  min-height: 50px;
+}
+
+.boxshadow:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.done-item {
+  padding: 10px;
+}
+
+.edit-field {
+  padding-left: 20px;
+}
+
+.edit-input:focus {
+  border-bottom: 1px solid lightblue;
+  outline: none;
+}
+
+.edit-input {
+  width: 80%;
+}
+
+.removed-item {
+  padding: 3px 30px;
+
+}
+
+.removed-item>button>svg {
+  color: aqua;
+}
+
+.button-logout {
+  width: 30%;
+  margin: 20px;
+}
+
+.button-logout-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-login {
+  background-color: lightblue;
+
+}
+
+.input-login:focus {
+  outline: none;
+  border-bottom: 1px solid greenyellow;
+}
+
+.col-3 {
+  float: left;
+  width: 90%;
+  margin: 40px 3%;
+  position: relative;
+}
+
+input[type="text, password"] {
+  font: 15px/24px "Lato", Arial, sans-serif;
+  color: #333;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+}
+
+.effect-16 {
+  border: 0;
+  padding: 4px 0;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent;
+  width: 100%;
+}
+
+.effect-16~.focus-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #3399FF;
+  transition: 0.4s;
+}
+
+.effect-16:focus~.focus-border,
+.has-content.effect-16~.focus-border {
+  width: 100%;
+  transition: 0.4s;
+}
+
+.effect-16~label {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 9px;
+  color: #aaa;
+  transition: 0.3s;
+  z-index: -1;
+  letter-spacing: 0.5px;
+}
+.effect-16:not(:placeholder-shown)~label,
+.effect-16:focus~label,
+.has-content.effect-16~label {
+  top: -16px;
+  font-size: 12px;
+  color: #3399FF;
+  transition: 0.3s;
+}
+
+.effect-16:focus {
+  outline: none;
+}
+.login-container{
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  margin: 0 auto;
+  padding: 20px;
+  padding-left: 31px;
+}
+
+/* ========================== Share ======================================= */
+
+.custom-field {
+  position: relative;
+  font-size: 14px;
+  border-top: 20px solid transparent;
+  margin-bottom: 5px;
+  --field-padding: 12px;
+}
+.custom-field input {
+  border: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #f2f2f2;
+  padding: var(--field-padding);
+  border-radius: 3px;
+  width: 275px;
+  outline: none;
+  font-size: 14px;
+}
+.custom-field .placeholder {
+  position: absolute;
+  left: var(--field-padding);
+  width: calc(100% - (var(--field-padding) * 2));
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  top: 12px;
+  line-height: 100%;
+  transform: translateY(-50%);
+  color: #aaa;
+  transition: 
+    top 0.3s ease,
+    color 0.3s ease,
+    font-size 0.3s ease;
+}
+
+
+/* input.dirty ??? */
+
+.custom-field input.dirty + .placeholder,
+.custom-field input:focus + .placeholder,
+.custom-field input:not(:placeholder-shown) + .placeholder {
+  top: -10px;
+  font-size: 14px;
+  color: #2196f3;
+}
+.custom-field.two input {
+  border-radius: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background:
+    linear-gradient(90deg, #2196f3, #2196f3) center bottom/0 0.15em no-repeat,
+    linear-gradient(90deg, #ccc, #ccc) left bottom/100% 0.15em no-repeat,
+    linear-gradient(90deg, #fafafa, #fafafa) left bottom/100% no-repeat;
+  transition: background-size 0.3s ease;
+}
+
+.custom-field.two input.dirty,
+.custom-field.two input:not(:placeholder-shown),
+.custom-field.two input:focus {
+  background-size: 100% 0.15em, 100% 0.1em, 100%;
+}
+.container-share{
+  position: relative;
+  width: 275px;
+  
+}
+.icon-search{
+  position: absolute;
+  top: 5px;
+  right:0;
+  color: #aaa;
+  cursor: pointer;
+}
+.target-person:hover{
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+.target-person{
+  margin: 5px 0px 5px 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+}
+.flex-row{
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  width: 70%;
+  padding-left: 5px;
+}
+.flex-row > p {
+  margin-left: 20px;
+  /* color: #2196f3; */
+}
+.target-person:hover  p{
+    color: #2196f3;
+}
+.target-person:hover  svg{
+    color: #2196f3;
+}
+/* ========================== End Share ======================================= */
+
+/* ==============================  Assign Table =================================== */
+.success-bg{
+  background-color: #28a745;
+}
+.btn-fix{
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  /* width: 50px;
+  height: 50px; */
+}
+body{
+  position: relative;
+}
+
+.supper-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 50px 0;
+}
+@media only screen and (max-width: 1040px) {
+  .supper-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px ;
+    justify-content: space-around;
+    margin: 50px 0;
+  }
+  .list{
+    width: 45vw;
+    min-height: 40vh;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .supper-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px ;
+    justify-content: space-around;
+    margin: 50px 0;
+  }
+  .list{
+    width: 80vw;
+    min-height: 40vh;
+  }
+}
