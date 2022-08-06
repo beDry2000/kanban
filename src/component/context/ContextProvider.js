@@ -15,6 +15,8 @@ const DataProvider = ({ children }) => {
         todoInput:'',
         editedId: null,
         curUser: null,
+        filInput:'',
+        filterListId: 'column-1',
     }
     const [state, dispatch] = useReducer(reducer, initState);
     return (

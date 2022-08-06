@@ -1,4 +1,4 @@
-import { ADD_JOB, CHECK_JOB, DEL_JOB, EDIT_JOB, SET_JOB, EDIT_ID, REMOVE_JOB, FETCH_JOB, SET_USER, REORDER_DOING, ASSIGN_JOB } from "./constants";
+import { ADD_JOB, CHECK_JOB, DEL_JOB, EDIT_JOB, SET_JOB, EDIT_ID, REMOVE_JOB, FETCH_JOB, SET_USER, REORDER_DOING, ASSIGN_JOB, FIL_JOB, FIL_LIST } from "./constants";
 import { getUserObject } from "../../hooks";
 import { SetDate } from "../../hooks";
 
@@ -141,6 +141,19 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 curUser: user
+            }
+        case FIL_JOB:
+            const filInput = action.payload
+            return  {
+                ...state,
+                filInput
+            }
+        case FIL_LIST : 
+            const filterListId =action.payload;
+            console.log('Dang nhan duoc id cua cot ', filterListId);
+            return {
+                ...state,
+                filterListId
             }
         case REORDER_DOING:
             const reorderDoing = todos.filter(({ isCompleted, isRemoved }) => isCompleted || isRemoved);

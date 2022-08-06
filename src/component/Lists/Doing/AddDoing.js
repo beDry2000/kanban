@@ -56,7 +56,7 @@ const AddToDo = () => {
                         <Box
                             component="form"
                             sx={{
-                                '& > :not(style)': { width: isMediumScreen? '40ch': '20ch' },
+                                '& > :not(style)': { width: isMediumScreen? '20ch': '16ch' },
                             }}
                             noValidate
                             autoComplete="off"

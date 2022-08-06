@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Button from '@mui/material/Button';
 import { useSideContext } from '../hooks';
+import HelloUser from './HelloUser';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -36,6 +37,7 @@ const LoginBtn = () => {
   }
   return (
     <>
+      {isLoggedin && <HelloUser />}
       <Button
         variant="contained"
         onClick={handleClick}
@@ -55,13 +57,13 @@ const LoginBtn = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="button" component="h2" sx={{textAlign:'center', fontSize:'20px', fontWeight:'600'}}>
+          <Typography id="modal-modal-title" variant="button" component="h2" sx={{ textAlign: 'center', fontSize: '20px', fontWeight: '600' }}>
             Do you want to log out?
           </Typography>
           <div className='button-logout-div'>
             <Button
               // sx={{ mb: -2, mt: 2, ml: '10rem', mr: '2rem', width: 1 / 4 }}
-              sx={{mr: '20px', ml: '20px', mt: '20px', mb: '5px'}}
+              sx={{ mr: '20px', ml: '20px', mt: '20px', mb: '5px' }}
               className='button-logout'
               variant="outlined"
               onClick={() => {
@@ -72,8 +74,8 @@ const LoginBtn = () => {
               Yes
             </Button>
             <Button
-             className='button-logout'
-             sx={{mr: '20px', ml: '20px', mt: '20px', mb: '5px'}}
+              className='button-logout'
+              sx={{ mr: '20px', ml: '20px', mt: '20px', mb: '5px' }}
               // sx={{ mb: -2, mt: 2, width: 1 / 4 }}
               variant="contained" onClick={handleClose}>No</Button>
           </div>

@@ -5,11 +5,17 @@ import DoneItem from './DoneItem';
 
 const Done = ({ id }) => {
   const [state] = useData();
-  const { todos } = state;
+  const { todos, filInput, filterListId } = state;
+  const isSearching = filInput.length > 0;
+  const isFilterCurList = filterListId === id || filterListId;
+  console.log('Done', isFilterCurList)
   return (
     <div
-      className="task-list">
-      <div className='top-list' >
+      className="task-list"
+
+    >
+      <div className='top-list'
+      >
         <h2>Done</h2>
         <hr />
       </div>
@@ -28,14 +34,23 @@ const Done = ({ id }) => {
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
-                  {provided.placeholder}
+
                   {
                     todos
                       .filter(({ isCompleted }) => isCompleted)
+                      .filter(({ todo }) => {
+                        if (isSearching && isFilterCurList) {
+                          console.log('DAng chay Filter')
+                          console.log('isSearching', isSearching)
+                          return todo.toLowerCase().includes(filInput.toLowerCase());
+                        }
+                        return true;
+                      })
                       .map(({ todo }, index) => (
                         <DoneItem key={index} todo={todo} />
                       ))
                   }
+                  {provided.placeholder}
                 </div>
               )
 

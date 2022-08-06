@@ -5,13 +5,16 @@ import './Calendar.css';
 import SignupBtn from './SignupBtn';
 
 
+
 const Header = () => {
+  
   return (
     <div className='header flex w-screen min-w-[200px]'>
       <div className='basis-1/4 ml-[10%] self-center'>
       <Calendar />
       </div>
-      <div className='flex grow justify-end items-center'>
+      <div className='flex grow justify-end items-center gap-4'>
+        
         <SignupBtn />
         <LoginBtn />
       </div>

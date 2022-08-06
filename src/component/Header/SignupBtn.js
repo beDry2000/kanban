@@ -1,12 +1,10 @@
 import { useState, useRef } from 'react';
 import { useData, useSideContext } from '../hooks';
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+
 import DialogTitle from '@mui/material/DialogTitle';
+import SearchTask from './SearchTask';
 
 import Stack from '@mui/material/Stack';
 
@@ -67,7 +65,11 @@ const SignupBtn = () => {
     return (
         <>
             {
-                isLoggedin ? true : (
+                isLoggedin 
+                ? (
+                    <SearchTask />
+                )
+                : (
                     <>
                         <Button
                             variant="contained"

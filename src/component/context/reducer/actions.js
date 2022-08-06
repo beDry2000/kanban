@@ -1,4 +1,4 @@
-import { FETCH_JOB, SET_JOB, ADD_JOB, DEL_JOB, EDIT_JOB, FIL_JOB, CHECK_JOB, EDIT_ID, REMOVE_JOB, SET_USER, REORDER_DOING, ASSIGN_JOB } from './constants';
+import { FETCH_JOB, SET_JOB, ADD_JOB, DEL_JOB, EDIT_JOB, FIL_JOB, CHECK_JOB, EDIT_ID, REMOVE_JOB, SET_USER, REORDER_DOING, ASSIGN_JOB, FIL_LIST } from './constants';
 
 const reOrderDoing = payload => ({
     type: REORDER_DOING,
@@ -40,6 +40,10 @@ const filJob = payload => ({
     type: FIL_JOB,
     payload
 })
+const filList = payload => ({
+    type: FIL_LIST,
+    payload
+})
 const removeJob = payload => ({
     type: REMOVE_JOB,
     payload,
@@ -56,4 +60,4 @@ const assignJob = ({ taskObj, curUser, receiver }) => ({
     receiver
 })
 
-export { fetchJob, setJob, addJob, delJob, editJob, filJob, checkJob, editId, removeJob, setCurUser, reOrderDoing, assignJob };
+export { fetchJob, setJob, addJob, delJob, editJob, filJob, checkJob, editId, removeJob, setCurUser, reOrderDoing, assignJob, filList };
