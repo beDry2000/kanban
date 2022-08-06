@@ -2,8 +2,14 @@ import React from 'react'
 
 const FirstPage = () => {
     return (
-        <div className='background'>
-            {/* <div className='first-image'>
+        <div className='background'
+        style={{margin: '0 auto',
+        width: '30vw',
+    
+    
+    }}
+        >
+            <div className='first-image'>
             <svg width="240px" height="324px" viewBox="0 0 240 324" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                 <title>peep-39</title>
                 <desc>Created with Sketch.</desc>
@@ -34,7 +40,7 @@ const FirstPage = () => {
                 </g>
             </svg>
             </div>
-           <p>Log in to be more efficient!</p> */}
+           <p>Log in to be more efficient!</p>
             {/* <div class="container">
                 <h2 class="title">
                     <span class="title-word title-word-1">Be</span> {' '}
